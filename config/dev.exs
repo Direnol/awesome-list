@@ -68,6 +68,6 @@ config :phoenix, :plug_init_mode, :runtime
 
 config :awesome_list, AwesomeList,
   # Указываем репозиторий
-  repo: "Direnol/awesome-list",
+  repo: System.get_env("AWESOME_REPO", "h4cc/awesome-elixir"),
   # Путь в репозитории до файла, где описаны проекты
-  file: "./test/README.md"
+  file: System.get_env("AWESOME_FILE", "./README.md")

@@ -185,7 +185,20 @@ defmodule AwesomeList do
   end
 
   @spec collect_repos(tuple()) :: repo_info()
-  defp collect_repos({"li", _, [{"a", [{"href", href}], [name], _}, desc | _], _}) do
+  defp collect_repos({"li", _, [{"p", _, [{"a", [{"href", href}], [name], _} | desc], _}], _}),
+    do: do_collect_repos(href, name, Earmark.Transform.transform(desc))
+
+  defp collect_repos(
+         {"li", _,
+          [
+            {"a", [{"href", href}], [name], _}
+            | desc
+          ], %{}}
+       ),
+       do: do_collect_repos(href, name, Earmark.Transform.transform(desc))
+
+  @spec do_collect_repos(String.t(), String.t(), String.t()) :: repo_info()
+  defp do_collect_repos(href, name, desc) do
     uri = URI.parse(href)
 
     case uri.host do

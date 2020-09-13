@@ -19,7 +19,8 @@
                 <a href="<%= href %>"> <%= name %> </a>
                 ⭐ <sub> <%= stars %> </sub>
                 📅 <sub> <%= past %></sub>
-                — <%= AwesomeList.format_description(desc) %>
+                — <%= raw AwesomeList.format_description(desc) %>
+
             </li>
 
         <% {name, href, desc, _} -> %>

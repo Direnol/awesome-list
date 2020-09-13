@@ -16,8 +16,8 @@ defmodule AwesomeList.Application do
       {ConCache,
        [
          name: AwesomeList,
-         ttl_check_interval: :timer.hours(1),
-         global_ttl: :timer.hours(3)
+         ttl_check_interval: :timer.hours(23),
+         global_ttl: :timer.hours(23)
        ]}
       # Start a worker by calling: AwesomeList.Worker.start_link(arg)
       # {AwesomeList.Worker, arg}

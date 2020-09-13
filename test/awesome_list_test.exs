@@ -23,7 +23,17 @@ defmodule AwesomeListTest do
 
       assert match?({:error, _}, AwesomeList.get_repo_commit("direnol/awesomee-list"))
     end
+  end
 
+  describe "parse" do
+    parsed = AwesomeList.get_readme() |> AwesomeList.parse()
+    assert is_list(parsed)
 
+    assert Enum.all?(parsed, fn {_group, _desc, repos} ->
+             Enum.all?(repos, fn
+               {_name, _href, _desc, %{} = _info} -> true
+               _ -> false
+             end)
+           end)
   end
 end
