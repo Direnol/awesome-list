@@ -33,7 +33,7 @@ config :awesome_list, AwesomeList,
   file: "./README.md",
   # Ветка
   branch: "master",
-  user: "direnol",
+  user: System.get_env("GITHUB_USER", ""),
   token: System.get_env("GITHUB_TOKEN", "")
 
 # Import environment specific config. This must remain at the bottom
