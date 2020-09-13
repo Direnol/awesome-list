@@ -1,0 +1,35 @@
+<%= for {group, desc, items} <- @repos do %>
+<%= if items != [] do %>
+    <h2> <%= group %> </h2>
+    <p> <%= AwesomeList.format_description(desc) %></p>
+
+    <ol>
+    <%= for item <- items do %>
+        <%= case item do %>
+        <% {name, href, desc, %{stars: stars, last_commit: last_commit}} -> %>
+
+            <% past =  if not is_nil(last_commit)  do
+                {:ok, days, _} = DateTime.from_iso8601(last_commit)
+                Date.diff(Date.utc_today(), DateTime.to_date(days))
+            else
+                -1
+            end %>
+
+            <li <%= if past >= 364 do %> class="outdated" <% end %>>
+                <a href="<%= href %>"> <%= name %> </a>
+                ⭐ <sub> <%= stars %> </sub>
+                📅 <sub> <%= past %></sub>
+                — <%= AwesomeList.format_description(desc) %>
+            </li>
+
+        <% {name, href, desc, _} -> %>
+            <li> <a href="<%= href %>"> <%= name %> </a>
+                — <%= AwesomeList.format_description(desc) %>
+            </li>
+        <% end %>
+    <% end %>
+
+    </ol>
+
+<% end %>
+<% end %>
