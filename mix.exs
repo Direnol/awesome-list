@@ -19,7 +19,7 @@ defmodule AwesomeList.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      # applications: ~w[con_cache jason earmark]a,
+      # applications: ~w[con_cache jason earmark phoenix]a,
       mod: {AwesomeList.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
