@@ -165,8 +165,8 @@ defmodule AwesomeList do
     {[name | acc], :desc}
   end
 
-  defp do_parse_tag({"p", _, [{_, _, [desc], _}], _}, {[name | acc], :desc}) do
-    {[{name, desc} | acc], :process}
+  defp do_parse_tag({"p", _, [{_, _, desc, _}], _}, {[name | acc], :desc}) do
+    {[{name, Earmark.Transform.transform(desc)} | acc], :process}
   end
 
   defp do_parse_tag({"ul", _, repos, _}, {[{group_name, desc} | other_repos], :process}) do

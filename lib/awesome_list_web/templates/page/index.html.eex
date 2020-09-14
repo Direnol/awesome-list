@@ -1,7 +1,7 @@
 <%= for {group, desc, items} <- @repos do %>
 <%= if items != [] do %>
     <h2> <%= group %> </h2>
-    <p> <%= AwesomeList.format_description(desc) %></p>
+    <p> <%= raw AwesomeList.format_description(desc) %></p>
 
     <ol>
     <%= for item <- items do %>
